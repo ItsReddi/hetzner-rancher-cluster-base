@@ -1,4 +1,3 @@
-# NOTE: this release was tested against kubernetes v1.18.x
 # TRACK: https://github.com/hetznercloud/hcloud-cloud-controller-manager
 ---
 apiVersion: v1
@@ -54,7 +53,7 @@ spec:
         - key: "node.kubernetes.io/not-ready"
           effect: "NoSchedule"
       containers:
-        - image: hetznercloud/hcloud-cloud-controller-manager:v1.8.1
+        - image: hetznercloud/hcloud-cloud-controller-manager:v1.15.0
           name: hcloud-cloud-controller-manager
           command:
             - "/bin/hcloud-cloud-controller-manager"
