@@ -57,7 +57,6 @@ spec:
 
         - key: "node.kubernetes.io/not-ready"
           effect: "NoExecute"
-      hostNetwork: true
       containers:
         - name: hcloud-cloud-controller-manager
           command:
@@ -66,8 +65,6 @@ spec:
             - "--cloud-provider=hcloud"
             - "--leader-elect=false"
             - "--route-reconciliation-period=30s"
-            - "--allocate-node-cidrs=true"
-            - "--cluster-cidr=10.244.0.0/16"
           env:
             - name: HCLOUD_TOKEN
               valueFrom:
@@ -78,12 +75,7 @@ spec:
               valueFrom:
                 fieldRef:
                   fieldPath: spec.nodeName
-            - name: HCLOUD_NETWORK
-              valueFrom:
-                secretKeyRef:
-                  name: hcloud
-                  key: network
-          image: hetznercloud/hcloud-cloud-controller-manager:v1.13.2
+          image: hetznercloud/hcloud-cloud-controller-manager:v1.15.0 # x-release-please-version
           ports:
             - name: metrics
               containerPort: 8233
